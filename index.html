@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunnel Experience</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+        
+        .tunnel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: tunnelEffect 20s linear infinite;
+        }
+        
+        .ring {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border: 2px solid;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotateX(90deg);
+        }
+        
+        @keyframes tunnelEffect {
+            0% {
+                transform: translateZ(-50px) rotateX(0deg);
+            }
+            100% {
+                transform: translateZ(2000px) rotateX(360deg);
+            }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #00ccff, #0033ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tunnel" id="tunnel"></div>
+        
+        <div class="content">
+            <h1>Tunnel Exploration</h1>
+            <p>Selamat datang di perjalanan tunnel digital kami. Nikmati pengalaman visual yang menarik saat Anda menjelajah melalui tunnel interaktif ini.</p>
+            <a href="/system/dashboard.html" class="btn">Mulai Petualangan</a>
+        </div>
+    </div>
+
+    <script>
+        // Create rings for the tunnel effect
+        const tunnel = document.getElementById('tunnel');
+        const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff00cc', '#00ccff'];
+        
+        for (let i = 0; i < 20; i++) {
+            const ring = document.createElement('div');
+            ring.className = 'ring';
+            const size = (i + 1) * 80;
+            ring.style.width = size + 'px';
+            ring.style.height = size + 'px';
+            ring.style.borderColor = colors[i % colors.length];
+            ring.style.transform = `translate(-50%, -50%) rotateX(90deg) translateZ(${i * -100}px)`;
+            tunnel.appendChild(ring);
+        }
+    </script>
+</body>
+</html>
